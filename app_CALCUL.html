@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=430, initial-scale=1.0">
+<title>Jeu de calcul mental</title>
+
+<!-- Google Font : Outfit -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+
+<!-- Ton CSS -->
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<div class="game-container">
+  <div class="top-bar">
+    <div class="target-box" id="target"></div>
+    <button id="pauseBtn">PAUSE</button>
+  </div>
+  <div class="current-sum" id="currentSum"> Somme : 0 </div>
+  <div class="time-container">
+    <div class="time-bar" id="timeBar"></div>
+  </div>
+  <div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+  <div class="grid" id="grid"></div>
+  <div class="buttons">
+    <button id="refresh">réactualiser</button>
+    <button id="reset">reset</button>
+    <button id="quit">quitter</button>
+  </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

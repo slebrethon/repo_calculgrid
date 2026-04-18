@@ -1,0 +1,200 @@
+/* =====================
+   GLOBAL
+===================== */
+body {
+  margin: 0;
+  padding: 0;
+  background: #222;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: "Outfit", sans-serif;
+}
+/* =====================
+   CONTAINER
+===================== */
+.game-container {
+  width: 430px;
+  height: 932px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  box-sizing: border-box;
+}
+/* =====================
+   TARGET
+===================== */
+.top-bar {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+/* Bouton pause */
+#pauseBtn {
+  width: 100px;
+  height: 80px;
+  background-color: orange;
+  color: white;
+  font-weight: bold;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+.target-box {
+  width: 90%;
+  height: 80px;
+  background: #111;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  font-weight: bold;
+  border-radius: 10px;
+  flex: 1;
+  margin-right: 10px;
+}
+.target-box.success {
+  background-color: #4CAF50;
+  transition: background-color 0.2s ease;
+  transform: scale(1.05);
+}
+/* =====================
+   PROGRESS BAR
+===================== */
+.progress-container {
+  width: 90%;
+  height: 20px;
+  background-color: #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 10px 0;
+}
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background-color: orange;
+  transition: width 0.3s ease;
+}
+/* =====================
+   TIME BAR
+===================== */
+.time-container {
+  width: 90%;
+  height: 20px;
+  background-color: #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 10px 0;
+}
+.time-bar {
+  height: 100%;
+  width: 0%; /* au lieu de 100% */
+  background-color: #4CAF50;
+  transition: width 1s linear;
+}
+/* =====================
+   CURRENT SUM
+===================== */
+.current-sum {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+/* =====================
+   GRID
+===================== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(11, 1fr);
+  width: 90%;
+  height: 100%;
+}
+.grid.paused {
+    opacity: 0.5;
+    pointer-events: none;
+}
+/* =====================
+   CELLS
+===================== */
+.cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+/* Damier */
+.white {
+  background-color: #ffffff;
+}
+.gray {
+  background-color: #cccccc;
+}
+/* Hover */
+.cell:hover {
+  background-color: #4da6ff;
+}
+/* =====================
+   STATES
+===================== */
+/* Sélection */
+.cell.selected {
+  background-color: #4CAF50 !important;
+  color: white;
+}
+/* Disponible */
+.cell.available {
+  background-color: #a8d0ff !important;
+}
+/* Désactivé */
+.cell.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+/* Dépassement */
+.cell.error {
+  background-color: #f44336 !important;
+  color: white;
+}
+/* =====================
+   BUTTONS
+===================== */
+.buttons {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+button {
+  width: 32%;
+  height: 50px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+/* Réactualiser */
+#refresh {
+  background-color: #4CAF50;
+  color: white;
+}
+/* Reset */
+#reset {
+  background-color: #2196F3;
+  color: white;
+}
+/* Quitter */
+#quit {
+  background-color: #f44336;
+  color: white;
+}
