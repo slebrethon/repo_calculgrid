@@ -13,24 +13,29 @@
 <link href="css/css_fontawesome/sharp-duotone-thin.css" rel="stylesheet" />
 
 <!-- appel FONT -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
 
 <!-- appel BOOTSTRAP -->
 <link href="dist/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- appel CSS -->
-<link rel="stylesheet" href="css/style.css">
+<!-- CSS -->
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 <div class="game-container">
   <div class="top-bar">
     <div class="target-box" id="target"></div>
-    <button id="pauseBtn">PAUSE</button>
+    <button id="pauseBtn" data-i18n="pause"></button>
+    <button id="toolsBtn" data-i18n="params" onclick="goToParams()"></button>
   </div>
-  <div class="current-sum" id="currentSum"> Somme : 0 </div>
+  <div class="current-sum">
+    <span data-i18n="current_sum">
+    </span>
+    <span id="currentSumValue">
+      0
+    </span>
+  </div>
   <div class="time-container">
     <div class="time-bar" id="timeBar"></div>
   </div>
@@ -39,14 +44,20 @@
   </div>
   <div class="grid" id="grid"></div>
   <div class="buttons">
-    <button id="refresh">réactualiser</button>
-    <button id="reset">reset</button>
-    <button id="quit">quitter</button>
+    <button id="refresh" data-i18n="refresh"></button>
+    <button id="reset" data-i18n="reset"></button>
+    <button id="quit" data-i18n="quit"></button>
   </div>
 </div>
 
+<!-- appel LANGUE --> 
+<script src="scripts/i18n/fr.js"></script> 
+<script src="scripts/i18n/en.js"></script> 
+<script src="scripts/i18n/es.js"></script> 
+<script src="scripts/js_langchoice.js"></script> 
 <!-- appel SCRIPT --> 
-<script src="script/script.js"></script> 
+<script src="scripts/script.js"></script> 
+<!-- appel BOOTSTRAP --> 
 <script src="dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=430, initial-scale=1.0">
+<title>Paramètres</title>
+
+<!-- appel FONTAWESOME -->
+<link href="css/css_fontawesome/fontawesome.css" rel="stylesheet" />
+<link href="css/css_fontawesome/brands.css" rel="stylesheet" />
+<link href="css/css_fontawesome/solid.css" rel="stylesheet" />
+<link href="css/css_fontawesome/sharp-thin.css" rel="stylesheet" />
+<link href="css/css_fontawesome/sharp-duotone-thin.css" rel="stylesheet" />
+
+<!-- appel FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+
+<!-- appel BOOTSTRAP -->
+<link href="dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- CSS -->
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<div class="game-container">
+  <h2 data-i18n="param_title"></h2>
+  
+  <!-- Accordion -->
+  <div class="accordion" id="accordionParams"> 
+    
+    <!-- LANGUE -->
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLang" data-i18n="param_langue_title"></button>
+      </h2>
+      <div id="collapseLang" class="accordion-collapse collapse show">
+        <div class="accordion-body">
+          <button class="btn btn-outline-primary w-100 mb-2" onclick="setLanguage('fr')" data-i18n="param_choice_fr"></button>
+          <button class="btn btn-outline-primary w-100 mb-2" onclick="setLanguage('en')" data-i18n="param_choice_uk"></button>
+          <button class="btn btn-outline-primary w-100" onclick="setLanguage('es')" data-i18n="param_choice_es"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Bouton retour -->
+  <div class="mt-4">
+    <button class="btn btn-secondary w-100" onclick="goBack()" data-i18n="param_back"></button>
+  </div>
+</div>
+
+<!-- appel LANGUE -->
+<script src="scripts/i18n/fr.js"></script> 
+<script src="scripts/i18n/en.js"></script> 
+<script src="scripts/i18n/es.js"></script> 
+<script src="scripts/js_langchoice.js"></script>  
+<!-- appel BOOTSTRAP -->  
+<script src="dist/js/bootstrap.bundle.min.js"></script> 
+	
+</body>
+</html>

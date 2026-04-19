@@ -34,7 +34,6 @@ body {
   align-items: center;
   margin-bottom: 10px;
 }
-/* Bouton pause */
 #pauseBtn {
   width: 100px;
   height: 80px;
@@ -44,15 +43,24 @@ body {
   border-radius: 10px;
   border: none;
   cursor: pointer;
-	transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease;
 }
-/* État pause (par défaut) */
 #pauseBtn.pause {
-    background-color: orange;
+  background-color: orange;
 }
-/* État play */
 #pauseBtn.play {
-    background-color: #4CAF50;
+  background-color: #4CAF50;
+}
+#toolsBtn {
+  width: 100px;
+  height: 80px;
+  background-color: #2196F3;
+  color: white;
+  font-weight: bold;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  margin-left: 5px;
 }
 .target-box {
   width: 90%;
@@ -126,8 +134,8 @@ body {
   height: 100%;
 }
 .grid.paused {
-    opacity: 0.5;
-    pointer-events: none;
+  opacity: 0.5;
+  pointer-events: none;
 }
 /* =====================
    CELLS
