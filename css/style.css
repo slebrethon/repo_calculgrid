@@ -44,6 +44,15 @@ body {
   border-radius: 10px;
   border: none;
   cursor: pointer;
+	transition: background-color 0.2s ease;
+}
+/* État pause (par défaut) */
+#pauseBtn.pause {
+    background-color: orange;
+}
+/* État play */
+#pauseBtn.play {
+    background-color: #4CAF50;
 }
 .target-box {
   width: 90%;

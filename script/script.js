@@ -106,7 +106,7 @@ function handleOverflow() {
 // CLICK
 // =====================
 function handleClick(cell) {
-	if (isPaused) return;
+  if (isPaused) return;
   const value = parseInt(cell.dataset.value);
 
   if (cell.classList.contains("selected")) {
@@ -219,9 +219,16 @@ pauseBtn.addEventListener("click", () => {
 
   if (isPaused) {
     pauseBtn.textContent = "PLAY";
-    grid.classList.add("paused"); // 👈 effet visuel
+    pauseBtn.classList.remove("pause");
+    pauseBtn.classList.add("play");
+
+    grid.classList.add("paused");
+
   } else {
     pauseBtn.textContent = "PAUSE";
+    pauseBtn.classList.remove("play");
+    pauseBtn.classList.add("pause");
+
     grid.classList.remove("paused");
   }
 });
@@ -413,8 +420,11 @@ function generateGrid() {
 refreshBtn.addEventListener("click", () => {
   resetGame();
   isPaused = false;
+  grid.classList.remove("paused");
+  pauseBtn.classList.remove("play");
+  pauseBtn.classList.add("pause");
   pauseBtn.textContent = "PAUSE";
-	grid.classList.remove("paused");
+
 });
 resetBtn.addEventListener("click", resetSelection);
 quitBtn.addEventListener("click", () => {
