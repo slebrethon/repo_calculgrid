@@ -13,6 +13,29 @@ const pauseBtn = document.getElementById("pauseBtn");
 const progressBar = document.getElementById("progressBar");
 const timeBar = document.getElementById("timeBar");
 
+const tapSound = document.getElementById("tapSound");
+const errorSound = document.getElementById("errorSound");
+
+const scoreValue = document.getElementById("scoreValue");
+
+// =====================
+// AUDIO (NEW)
+// =====================
+function getAudioSettings() {
+  return {
+    sfx: localStorage.getItem("audio_sfx") !== "false",
+    music: localStorage.getItem("audio_music") !== "false"
+  };
+}
+
+function playSound(sound) {
+  const audio = getAudioSettings();
+  if (!audio.sfx) return;
+
+  sound.currentTime = 0;
+  sound.play().catch(() => {});
+}
+
 // =====================
 // VARIABLES
 // =====================
@@ -37,12 +60,32 @@ let isPaused = false;
 // UI
 // =====================
 function updateSumDisplay() {
-    currentSumValue.textContent = currentSum;
+  currentSumValue.textContent = currentSum;
 }
 
 function updateProgressBar() {
-    let percent = (progress / maxProgress) * 100;
-    progressBar.style.width = percent + "%";
+  let percent = (progress / maxProgress) * 100;
+  progressBar.style.width = percent + "%";
+}
+
+// =====================
+// SCORE
+// =====================
+let score = 0;
+
+function updateScoreDisplay() {
+  scoreValue.textContent = score;
+}
+function saveScore(finalScore) {
+
+  let scores = JSON.parse(localStorage.getItem("game_scores")) || [];
+
+  scores.push({
+    score: finalScore,
+    date: new Date().toLocaleString()
+  });
+
+  localStorage.setItem("game_scores", JSON.stringify(scores));
 }
 
 // =====================
@@ -50,47 +93,56 @@ function updateProgressBar() {
 // =====================
 function startTimer() {
 
-    clearInterval(timerInterval);
+  clearInterval(timerInterval);
 
-    remainingTime = 0;
-    timeBar.style.width = "0%";
-    timeBar.style.backgroundColor = "#4CAF50";
+  remainingTime = 0;
+  timeBar.style.width = "0%";
+  timeBar.style.backgroundColor = "#4CAF50";
 
-    timerInterval = setInterval(() => {
+  timerInterval = setInterval(() => {
 
-        if (isPaused) return;
+    if (isPaused) return;
 
-        remainingTime++;
+    remainingTime++;
 
-        let percent = (remainingTime / totalTime) * 100;
-        timeBar.style.width = percent + "%";
+    let percent = (remainingTime / totalTime) * 100;
+    timeBar.style.width = percent + "%";
 
-        if (percent > 70) timeBar.style.backgroundColor = "#ff9800";
-        if (percent > 90) timeBar.style.backgroundColor = "#f44336";
+    if (percent > 70) timeBar.style.backgroundColor = "#ff9800";
+    if (percent > 90) timeBar.style.backgroundColor = "#f44336";
 
-        if (remainingTime >= totalTime) {
-            clearInterval(timerInterval);
-            console.log("GAME OVER");
-        }
+    if (remainingTime >= totalTime) {
+      clearInterval(timerInterval);
+      console.log("GAME OVER");
+    }
 
-    }, 1000);
+  }, 1000);
 }
 
 // =====================
 // SÉLECTION
 // =====================
 function selectCell(cell, value) {
-    cell.classList.add("selected");
-    selectedPath.push(cell);
-    currentSum += value;
+  cell.classList.add("selected");
+  selectedPath.push(cell);
+  currentSum += value;
 }
 
 function handleOverflow() {
-    selectedPath.forEach(c => c.classList.remove("error"));
+  selectedPath.forEach(c => c.classList.remove("error"));
 
-    if (currentSum > targetNumber) {
-        selectedPath[selectedPath.length - 1].classList.add("error");
+  if (currentSum > targetNumber) {
+
+    const lastCell = selectedPath[selectedPath.length - 1];
+
+    if (!lastCell.classList.contains("error")) {
+
+      lastCell.classList.add("error");
+
+      // SON ERREUR
+      playSound(errorSound);
     }
+  }
 }
 
 // =====================
@@ -98,41 +150,42 @@ function handleOverflow() {
 // =====================
 function handleClick(cell) {
 
-    if (isPaused) return;
+  if (isPaused) return;
 
-    const value = parseInt(cell.dataset.value);
+  // SON TAP
+  playSound(tapSound);
 
-    if (cell.classList.contains("selected")) {
+  const value = parseInt(cell.dataset.value);
 
-        const last = selectedPath[selectedPath.length - 1];
+  if (cell.classList.contains("selected")) {
 
-        if (cell === last) {
-            cell.classList.remove("selected", "error");
-            selectedPath.pop();
-            currentSum -= value;
-        }
+    const last = selectedPath[selectedPath.length - 1];
 
-    } else {
-
-        if (currentSum > targetNumber) return;
-
-        if (selectedPath.length === 0 || cell.classList.contains("available")) {
-            selectCell(cell, value);
-        }
+    if (cell === last) {
+      cell.classList.remove("selected", "error");
+      selectedPath.pop();
+      currentSum -= value;
     }
 
-    handleOverflow();
-    updateSumDisplay();
-    updateAvailableCells();
+  } else {
 
-    if (currentSum === targetNumber) {
+    if (currentSum > targetNumber) return;
 
-        triggerSuccessEffect();
-
-        setTimeout(() => {
-            updateGridAfterWin();
-        }, 300);
+    if (selectedPath.length === 0 || cell.classList.contains("available")) {
+      selectCell(cell, value);
     }
+  }
+
+  handleOverflow();
+  updateSumDisplay();
+  updateAvailableCells();
+
+  if (currentSum === targetNumber) {
+    triggerSuccessEffect();
+    setTimeout(() => {
+      updateGridAfterWin();
+    }, 300);
+  }
 }
 
 // =====================
@@ -140,50 +193,56 @@ function handleClick(cell) {
 // =====================
 function updateAvailableCells() {
 
-    cells.flat().forEach(c => {
-        c.classList.remove("available", "disabled");
-    });
+  cells.flat().forEach(c => {
+    c.classList.remove("available", "disabled");
+  });
 
-    if (currentSum > targetNumber) {
-        cells.flat().forEach(c => {
-            if (!c.classList.contains("selected")) {
-                c.classList.add("disabled");
-            }
-        });
-        return;
+  if (currentSum > targetNumber) {
+    cells.flat().forEach(c => {
+      if (!c.classList.contains("selected")) {
+        c.classList.add("disabled");
+      }
+    });
+    return;
+  }
+
+  if (selectedPath.length === 0) return;
+
+  const last = selectedPath[selectedPath.length - 1];
+  const row = +last.dataset.row;
+  const col = +last.dataset.col;
+
+  const dirs = [
+    [0, 1],
+    [1, 0],
+    [0, -1],
+    [-1, 0],
+    [1, 1],
+    [1, -1],
+    [-1, 1],
+    [-1, -1]
+  ];
+
+  let available = [];
+
+  dirs.forEach(([dr, dc]) => {
+    let r = row + dr;
+    let c = col + dc;
+
+    if (cells[r] && cells[r][c] && !cells[r][c].classList.contains("selected")) {
+      available.push(cells[r][c]);
     }
+  });
 
-    if (selectedPath.length === 0) return;
+  cells.flat().forEach(c => {
+    if (c.classList.contains("selected")) return;
 
-    const last = selectedPath[selectedPath.length - 1];
-    const row = +last.dataset.row;
-    const col = +last.dataset.col;
-
-    const dirs = [
-        [0,1],[1,0],[0,-1],[-1,0],
-        [1,1],[1,-1],[-1,1],[-1,-1]
-    ];
-
-    let available = [];
-
-    dirs.forEach(([dr,dc]) => {
-        let r = row + dr;
-        let c = col + dc;
-
-        if (cells[r] && cells[r][c] && !cells[r][c].classList.contains("selected")) {
-            available.push(cells[r][c]);
-        }
-    });
-
-    cells.flat().forEach(c => {
-        if (c.classList.contains("selected")) return;
-
-        if (available.includes(c)) {
-            c.classList.add("available");
-        } else {
-            c.classList.add("disabled");
-        }
-    });
+    if (available.includes(c)) {
+      c.classList.add("available");
+    } else {
+      c.classList.add("disabled");
+    }
+  });
 }
 
 // =====================
@@ -191,54 +250,63 @@ function updateAvailableCells() {
 // =====================
 function resetSelection() {
 
-    selectedPath.forEach(c => c.classList.remove("selected", "error"));
+  selectedPath.forEach(c => c.classList.remove("selected", "error"));
 
-    selectedPath = [];
-    currentSum = 0;
-    updateSumDisplay();
+  selectedPath = [];
+  currentSum = 0;
+  updateSumDisplay();
 
-    cells.flat().forEach(c => {
-        c.classList.remove("available", "disabled");
-    });
+  cells.flat().forEach(c => {
+    c.classList.remove("available", "disabled");
+  });
 }
 
 // =====================
 // VICTOIRE
 // =====================
 function triggerSuccessEffect() {
-    targetBox.classList.add("success");
-    setTimeout(() => targetBox.classList.remove("success"), 300);
+  targetBox.classList.add("success");
+  setTimeout(() => targetBox.classList.remove("success"), 300);
 }
 
 function updateGridAfterWin() {
 
-    let newSum = 0;
+  let newSum = 0;
 
-    progress += selectedPath.length * 2;
-    if (progress > maxProgress) progress = maxProgress;
-    updateProgressBar();
+  let gained = selectedPath.length * 2;
 
-    selectedPath.forEach(cell => {
+  progress += gained;
+  score += gained;
 
-        let val = Math.floor(Math.random() * 9) + 1;
-        cell.dataset.value = val;
-        cell.textContent = val;
+  if (progress > maxProgress) progress = maxProgress;
 
-        newSum += val;
+  updateProgressBar();
+  updateScoreDisplay();
 
-        cell.classList.remove("selected", "error");
-    });
+  if (progress > maxProgress) progress = maxProgress;
+  updateProgressBar();
 
-    targetNumber = newSum;
-    targetBox.textContent = targetNumber;
+  selectedPath.forEach(cell => {
 
-    selectedPath = [];
-    currentSum = 0;
-    updateSumDisplay();
+    let val = Math.floor(Math.random() * 9) + 1;
+    cell.dataset.value = val;
+    cell.textContent = val;
 
-    cells.flat().forEach(c => {
-        c.classList.remove("available", "disabled");
-    });
+    newSum += val;
+
+    cell.classList.remove("selected", "error");
+  });
+
+  targetNumber = newSum;
+  targetBox.textContent = targetNumber;
+
+  selectedPath = [];
+  currentSum = 0;
+  updateSumDisplay();
+
+  cells.flat().forEach(c => {
+    c.classList.remove("available", "disabled");
+  });
 }
 
 // =====================
@@ -246,80 +314,86 @@ function updateGridAfterWin() {
 // =====================
 function generateGrid() {
 
-    grid.innerHTML = "";
-    selectedPath = [];
-    currentSum = 0;
-    updateSumDisplay();
+  grid.innerHTML = "";
+  selectedPath = [];
+  currentSum = 0;
+  updateSumDisplay();
 
-    cells = [];
+  cells = [];
 
-    for (let r = 0; r < rows; r++) {
-        cells[r] = [];
-        for (let c = 0; c < cols; c++) {
-            cells[r][c] = null;
-        }
+  for (let r = 0; r < rows; r++) {
+    cells[r] = [];
+    for (let c = 0; c < cols; c++) {
+      cells[r][c] = null;
     }
+  }
 
-    let path = [];
-    let len = Math.floor(Math.random() * 4) + 3;
+  let path = [];
+  let len = Math.floor(Math.random() * 4) + 3;
 
-    let sr = Math.floor(Math.random() * rows);
-    let sc = Math.floor(Math.random() * cols);
+  let sr = Math.floor(Math.random() * rows);
+  let sc = Math.floor(Math.random() * cols);
 
-    path.push([sr, sc]);
+  path.push([sr, sc]);
 
-    const dirs = [
-        [0,1],[1,0],[0,-1],[-1,0],
-        [1,1],[1,-1],[-1,1],[-1,-1]
-    ];
+  const dirs = [
+    [0, 1],
+    [1, 0],
+    [0, -1],
+    [-1, 0],
+    [1, 1],
+    [1, -1],
+    [-1, 1],
+    [-1, -1]
+  ];
 
-    while (path.length < len) {
-        let [r,c] = path[path.length-1];
+  while (path.length < len) {
+    let [r, c] = path[path.length - 1];
 
-        let moves = dirs
-            .map(([dr,dc]) => [r+dr,c+dc])
-            .filter(([nr,nc]) =>
-                nr>=0 && nr<rows && nc>=0 && nc<cols &&
-                !path.some(([pr,pc])=>pr===nr&&pc===nc)
-            );
+    let moves = dirs
+      .map(([dr, dc]) => [r + dr, c + dc])
+      .filter(([nr, nc]) =>
+        nr >= 0 && nr < rows && nc >= 0 && nc < cols
+        && !path.some(([pr, pc]) => pr === nr && pc === nc)
+      );
 
-        if (!moves.length) break;
+    if (!moves.length) break;
 
-        path.push(moves[Math.floor(Math.random()*moves.length)]);
+    path.push(moves[Math.floor(Math.random() * moves.length)]);
+  }
+
+  let sum = 0;
+  let values = path.map(() => {
+    let v = Math.floor(Math.random() * 9) + 1;
+    sum += v;
+    return v;
+  });
+
+  targetNumber = sum;
+  targetBox.textContent = targetNumber;
+
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+
+      let cell = document.createElement("div");
+      cell.classList.add("cell");
+
+      cell.classList.add((r + c) % 2 === 0 ? "white" : "gray");
+
+      let idx = path.findIndex(([pr, pc]) => pr === r && pc === c);
+      let val = (idx !== -1) ? values[idx] : Math.floor(Math.random() * 10);
+
+      cell.textContent = val;
+      cell.dataset.row = r;
+      cell.dataset.col = c;
+      cell.dataset.value = val;
+
+      cell.addEventListener("click", () => handleClick(cell));
+
+      cells[r][c] = cell;
+      grid.appendChild(cell);
     }
-
-    let sum = 0;
-    let values = path.map(() => {
-        let v = Math.floor(Math.random()*9)+1;
-        sum += v;
-        return v;
-    });
-
-    targetNumber = sum;
-    targetBox.textContent = targetNumber;
-
-    for (let r = 0; r < rows; r++) {
-        for (let c = 0; c < cols; c++) {
-
-            let cell = document.createElement("div");
-            cell.classList.add("cell");
-
-            cell.classList.add((r+c)%2===0 ? "white" : "gray");
-
-            let idx = path.findIndex(([pr,pc])=>pr===r&&pc===c);
-            let val = (idx !== -1) ? values[idx] : Math.floor(Math.random()*10);
-
-            cell.textContent = val;
-            cell.dataset.row = r;
-            cell.dataset.col = c;
-            cell.dataset.value = val;
-
-            cell.addEventListener("click", () => handleClick(cell));
-
-            cells[r][c] = cell;
-            grid.appendChild(cell);
-        }
-    }
+  }
 }
 
 // =====================
@@ -327,24 +401,20 @@ function generateGrid() {
 // =====================
 function resetGame() {
 
-    progress = 0;
-    updateProgressBar();
-	
-    isPaused = false;
-    pauseBtn.textContent = getText("pause");
-    pauseBtn.classList.remove("play");
-    pauseBtn.classList.add("pause");
-    grid.classList.remove("paused");
+  progress = 0;
+  updateProgressBar();
 
-    startTimer();
-    generateGrid();
-}
+  score = 0;
+  updateScoreDisplay();
 
-// =====================
-// NAVIGATION
-// =====================
-function goToParams() {
-    window.location.href = "game_params.html";
+  isPaused = false;
+  pauseBtn.textContent = getText("game_pause");
+  pauseBtn.classList.remove("play");
+  pauseBtn.classList.add("pause");
+  grid.classList.remove("paused");
+
+  startTimer();
+  generateGrid();
 }
 
 // =====================
@@ -352,31 +422,31 @@ function goToParams() {
 // =====================
 refreshBtn.addEventListener("click", resetGame);
 resetBtn.addEventListener("click", resetSelection);
-quitBtn.addEventListener("click", () => window.location.href = "game.html");
+quitBtn.addEventListener("click", goToMenu);
 
 pauseBtn.addEventListener("click", () => {
 
-    isPaused = !isPaused;
+  isPaused = !isPaused;
 
-    if (isPaused) {
-        pauseBtn.textContent = getText("play");
-        pauseBtn.classList.remove("pause");
-        pauseBtn.classList.add("play");
-        grid.classList.add("paused");
-    } else {
-        pauseBtn.textContent = getText("pause");
-        pauseBtn.classList.remove("play");
-        pauseBtn.classList.add("pause");
-        grid.classList.remove("paused");
-    }
+  if (isPaused) {
+    pauseBtn.textContent = getText("game_play");
+    pauseBtn.classList.remove("pause");
+    pauseBtn.classList.add("play");
+    grid.classList.add("paused");
+  } else {
+    pauseBtn.textContent = getText("game_pause");
+    pauseBtn.classList.remove("play");
+    pauseBtn.classList.add("pause");
+    grid.classList.remove("paused");
+  }
 });
 
 // =====================
 // INIT
 // =====================
-applyTranslations(); // ?? vient du fichier externe
+applyTranslations();
 pauseBtn.classList.add("pause");
-
 generateGrid();
 startTimer();
 updateProgressBar();
+updateScoreDisplay();

@@ -123,6 +123,10 @@ body {
   font-weight: bold;
   margin-bottom: 10px;
 }
+.separator {
+  margin: 0 8px;
+  opacity: 0.5;
+}
 /* =====================
    GRID
 ===================== */
@@ -214,4 +218,14 @@ button {
 #quit {
   background-color: #f44336;
   color: white;
+}
+.error {
+    animation: shake 0.2s;
+}
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-3px); }
+    50% { transform: translateX(3px); }
+    75% { transform: translateX(-3px); }
+    100% { transform: translateX(0); }
 }

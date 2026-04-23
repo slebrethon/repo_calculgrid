@@ -11,13 +11,10 @@
 <link href="css/css_fontawesome/solid.css" rel="stylesheet" />
 <link href="css/css_fontawesome/sharp-thin.css" rel="stylesheet" />
 <link href="css/css_fontawesome/sharp-duotone-thin.css" rel="stylesheet" />
-
 <!-- appel FONT -->
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
-
 <!-- appel BOOTSTRAP -->
-<link href="dist/css/bootstrap.min.css" rel="stylesheet">
-
+<link href="dist_bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <!-- CSS -->
 <link rel="stylesheet" href="style.css">
 </head>
@@ -34,11 +31,34 @@
       <h2 class="accordion-header">
         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLang" data-i18n="param_langue_title"></button>
       </h2>
-      <div id="collapseLang" class="accordion-collapse collapse show">
+      <div id="collapseLang" class="accordion-collapse collapse">
         <div class="accordion-body">
-          <button class="btn btn-outline-primary w-100 mb-2" onclick="setLanguage('fr')" data-i18n="param_choice_fr"></button>
-          <button class="btn btn-outline-primary w-100 mb-2" onclick="setLanguage('en')" data-i18n="param_choice_uk"></button>
-          <button class="btn btn-outline-primary w-100" onclick="setLanguage('es')" data-i18n="param_choice_es"></button>
+          <button class="btn btn-outline-primary w-100 mb-2 lang-btn" onclick="setLanguage('fr')" data-i18n="param_choice_fr"></button>
+          <button class="btn btn-outline-primary w-100 mb-2 lang-btn" onclick="setLanguage('uk')" data-i18n="param_choice_uk"></button>
+          <button class="btn btn-outline-primary w-100 mb-2 lang-btn" onclick="setLanguage('es')" data-i18n="param_choice_es"></button>
+          <button class="btn btn-outline-primary w-100 mb-2 lang-btn" onclick="setLanguage('it')" data-i18n="param_choice_it"></button>
+          <button class="btn btn-outline-primary w-100 mb-2 lang-btn" onclick="setLanguage('pt')" data-i18n="param_choice_pt"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSound" data-i18n="param_sound_title"></button>
+    </h2>
+    <div id="collapseSound" class="accordion-collapse collapse show">
+      <div class="accordion-body"> 
+        
+        <!-- SFX -->
+        <div class="form-check form-switch mb-3">
+          <input class="form-check-input" type="checkbox" id="toggleSFX">
+          <label class="form-check-label" for="toggleSFX" data-i18n="param_sound_sfx"></label>
+        </div>
+        
+        <!-- MUSIC -->
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" id="toggleMusic">
+          <label class="form-check-label" for="toggleMusic" data-i18n="param_sound_music"></label>
         </div>
       </div>
     </div>
@@ -50,13 +70,17 @@
   </div>
 </div>
 
-<!-- appel LANGUE -->
+<!-- appel LANGUE --> 
 <script src="scripts/i18n/fr.js"></script> 
-<script src="scripts/i18n/en.js"></script> 
+<script src="scripts/i18n/uk.js"></script> 
 <script src="scripts/i18n/es.js"></script> 
-<script src="scripts/js_langchoice.js"></script>  
-<!-- appel BOOTSTRAP -->  
-<script src="dist/js/bootstrap.bundle.min.js"></script> 
-	
+<script src="scripts/i18n/it.js"></script> 
+<script src="scripts/i18n/pt.js"></script> 
+<script src="scripts/js_langchoice.js"></script> 
+<script src="scripts/js_audio.js"></script> 
+<!-- appel ROUTES --> 
+<script src="scripts/js_routes.js"></script> 
+<!-- appel BOOTSTRAP --> 
+<script src="dist_bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

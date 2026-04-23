@@ -1,6 +1,7 @@
 const en = {
   /* GAME */
   game_current_sum: "Sum:",
+  game_score: "Score:",
   game_refresh: "reset",
   game_reset: "refresh",
   game_quit: "quit",
@@ -11,7 +12,13 @@ const en = {
   /* HOME */
   home_title: "Math Game",
   home_play: "Play",
+  home_score: "Classement",
   home_params: "Settings",
+
+  /* SCORE */
+  score_title: "Leaderboard",
+  score_value: "Score",
+  score_date: "Date",
 
   /* PARAMETERS */
   param_title: "Tools",
