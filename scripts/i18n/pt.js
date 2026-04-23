@@ -8,6 +8,9 @@ const pt = {
   game_pause: "pausa",
   game_play: "jogar",
   game_params: "configurações",
+  game_overtitle: "Fim de jogo",
+  game_overtext: "Tempo esgotado",
+  game_restart: "Jogar novamente",
 
   /* HOME */
   home_title: "Jogo de cálculo",
@@ -16,9 +19,9 @@ const pt = {
   home_params: "Configurações",
 
   /* SCORE */
-  score_title: "Leaderboard",
+  score_title: "Pontuação",
   score_value: "Score",
-  score_date: "Date",
+  score_date: "Data",
 
   /* PARAMETERS */
   param_title: "Configurações",

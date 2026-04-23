@@ -4,6 +4,7 @@
 const grid = document.getElementById("grid");
 const targetBox = document.getElementById("target");
 const currentSumValue = document.getElementById("currentSumValue");
+const scoreValue = document.getElementById("scoreValue");
 
 const refreshBtn = document.getElementById("refresh");
 const resetBtn = document.getElementById("reset");
@@ -16,10 +17,8 @@ const timeBar = document.getElementById("timeBar");
 const tapSound = document.getElementById("tapSound");
 const errorSound = document.getElementById("errorSound");
 
-const scoreValue = document.getElementById("scoreValue");
-
 // =====================
-// AUDIO (NEW)
+// AUDIO
 // =====================
 function getAudioSettings() {
   return {
@@ -50,6 +49,8 @@ let targetNumber = 0;
 let progress = 0;
 const maxProgress = 100;
 
+let score = 0;
+
 let totalTime = 120;
 let remainingTime = 0;
 let timerInterval;
@@ -63,29 +64,13 @@ function updateSumDisplay() {
   currentSumValue.textContent = currentSum;
 }
 
-function updateProgressBar() {
-  let percent = (progress / maxProgress) * 100;
-  progressBar.style.width = percent + "%";
-}
-
-// =====================
-// SCORE
-// =====================
-let score = 0;
-
 function updateScoreDisplay() {
   scoreValue.textContent = score;
 }
-function saveScore(finalScore) {
 
-  let scores = JSON.parse(localStorage.getItem("game_scores")) || [];
-
-  scores.push({
-    score: finalScore,
-    date: new Date().toLocaleString()
-  });
-
-  localStorage.setItem("game_scores", JSON.stringify(scores));
+function updateProgressBar() {
+  let percent = (progress / maxProgress) * 100;
+  progressBar.style.width = percent + "%";
 }
 
 // =====================
@@ -113,7 +98,7 @@ function startTimer() {
 
     if (remainingTime >= totalTime) {
       clearInterval(timerInterval);
-      console.log("GAME OVER");
+      handleGameOver();
     }
 
   }, 1000);
@@ -136,10 +121,7 @@ function handleOverflow() {
     const lastCell = selectedPath[selectedPath.length - 1];
 
     if (!lastCell.classList.contains("error")) {
-
       lastCell.classList.add("error");
-
-      // SON ERREUR
       playSound(errorSound);
     }
   }
@@ -152,7 +134,6 @@ function handleClick(cell) {
 
   if (isPaused) return;
 
-  // SON TAP
   playSound(tapSound);
 
   const value = parseInt(cell.dataset.value);
@@ -273,8 +254,10 @@ function updateGridAfterWin() {
 
   let newSum = 0;
 
+  // =====================
+  // SCORE + PROGRESS
+  // =====================
   let gained = selectedPath.length * 2;
-
   progress += gained;
   score += gained;
 
@@ -283,30 +266,54 @@ function updateGridAfterWin() {
   updateProgressBar();
   updateScoreDisplay();
 
-  if (progress > maxProgress) progress = maxProgress;
-  updateProgressBar();
+  // =====================
+  // BONUS TEMPS
+  // =====================
+  let bonusTime = 5 + selectedPath.length;
+  const maxBonus = 15;
+  if (bonusTime > maxBonus) bonusTime = maxBonus;
 
+  remainingTime -= bonusTime;
+  if (remainingTime < 0) remainingTime = 0;
+
+  let percent = (remainingTime / totalTime) * 100;
+  timeBar.style.width = percent + "%";
+
+  // =====================
+  // RESET VISUEL COMPLET AVANT UPDATE
+  // =====================
+  cells.flat().forEach(cell => {
+    cell.classList.remove("selected", "error", "available", "disabled");
+  });
+
+  // =====================
+  // UPDATE DES CASES SELECTIONNÉES
+  // =====================
   selectedPath.forEach(cell => {
 
     let val = Math.floor(Math.random() * 9) + 1;
+
     cell.dataset.value = val;
     cell.textContent = val;
 
     newSum += val;
-
-    cell.classList.remove("selected", "error");
   });
 
+  // =====================
+  // NOUVEL OBJECTIF
+  // =====================
   targetNumber = newSum;
   targetBox.textContent = targetNumber;
 
+  // =====================
+  // RESET LOGIQUE
+  // =====================
   selectedPath = [];
   currentSum = 0;
   updateSumDisplay();
 
-  cells.flat().forEach(c => {
-    c.classList.remove("available", "disabled");
-  });
+  // ?? IMPORTANT
+  updateAvailableCells();
 }
 
 // =====================
@@ -397,20 +404,59 @@ function generateGrid() {
 }
 
 // =====================
-// GAME RESET
+// GAME OVER
+// =====================
+function saveScore(finalScore) {
+  let scores = JSON.parse(localStorage.getItem("game_scores")) || [];
+  scores.push({
+    score: finalScore,
+    date: new Date().toLocaleString()
+  });
+  localStorage.setItem("game_scores", JSON.stringify(scores));
+}
+
+function handleGameOver() {
+
+  saveScore(score);
+
+  isPaused = true;
+  grid.classList.add("paused");
+
+  cells.flat().forEach(cell => {
+    cell.style.pointerEvents = "none";
+  });
+
+  const modal = new bootstrap.Modal(document.getElementById('gameOverModal'));
+  modal.show();
+}
+
+function restartGame() {
+
+  const modalEl = document.getElementById('gameOverModal');
+  const modal = bootstrap.Modal.getInstance(modalEl);
+  modal.hide();
+
+  cells.flat().forEach(cell => {
+    cell.style.pointerEvents = "auto";
+  });
+
+  resetGame();
+}
+
+// =====================
+// RESET GAME
 // =====================
 function resetGame() {
 
   progress = 0;
-  updateProgressBar();
-
   score = 0;
+
+  updateProgressBar();
   updateScoreDisplay();
 
   isPaused = false;
   pauseBtn.textContent = getText("game_pause");
-  pauseBtn.classList.remove("play");
-  pauseBtn.classList.add("pause");
+
   grid.classList.remove("paused");
 
   startTimer();
@@ -430,13 +476,9 @@ pauseBtn.addEventListener("click", () => {
 
   if (isPaused) {
     pauseBtn.textContent = getText("game_play");
-    pauseBtn.classList.remove("pause");
-    pauseBtn.classList.add("play");
     grid.classList.add("paused");
   } else {
     pauseBtn.textContent = getText("game_pause");
-    pauseBtn.classList.remove("play");
-    pauseBtn.classList.add("pause");
     grid.classList.remove("paused");
   }
 });
@@ -445,7 +487,6 @@ pauseBtn.addEventListener("click", () => {
 // INIT
 // =====================
 applyTranslations();
-pauseBtn.classList.add("pause");
 generateGrid();
 startTimer();
 updateProgressBar();

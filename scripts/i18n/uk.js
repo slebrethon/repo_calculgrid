@@ -8,6 +8,9 @@ const en = {
   game_pause: "pause",
   game_play: "play",
   game_params: "tools",
+  game_overtitle: "Game Over",
+  game_overtext: "Time is up",
+	game_restart: "Play again",
 
   /* HOME */
   home_title: "Math Game",

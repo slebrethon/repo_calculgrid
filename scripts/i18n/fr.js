@@ -8,6 +8,9 @@ const fr = {
   game_pause: "pause",
   game_play: "jouer",
   game_params: "paramètre",
+  game_overtitle: "Fin de partie",
+  game_overtext: "Le temps de jeu est écoulé",
+	game_restart: "rejouer",
 
   /* HOME */
   home_title: "Jeu de calcul",

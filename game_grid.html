@@ -57,6 +57,24 @@
     <button id="quit" data-i18n="game_quit"></button>
   </div>
 </div>
+	
+<!-- modal FIN DE JEU -->
+<div class="modal fade" id="gameOverModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content bg-dark text-white">
+      <div class="modal-header">
+        <h5 class="modal-title" data-i18n="game_overtitle"></h5>
+      </div>
+      <div class="modal-body text-center">
+        <p data-i18n="game_overtext"></p>
+      </div>
+      <div class="modal-footer d-flex flex-column gap-2">
+        <button class="btn btn-success w-100" onclick="restartGame()" data-i18n="game_restart"></button>
+        <button class="btn btn-danger w-100" onclick="goToMenu()" data-i18n="game_quit"></button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- appel SON -->
 <audio id="tapSound" src="assets/sound/sound_tap.mp3" preload="auto"></audio>

@@ -115,6 +115,9 @@ body {
   background-color: #4CAF50;
   transition: width 1s linear;
 }
+#timeBar {
+  transition: width 0.3s ease;
+}
 /* =====================
    CURRENT SUM
 ===================== */
@@ -169,12 +172,12 @@ body {
 ===================== */
 /* Sélection */
 .cell.selected {
-  background-color: #4CAF50 !important;
+  background-color: #4CAF50;
   color: white;
 }
 /* Disponible */
 .cell.available {
-  background-color: #a8d0ff !important;
+  background-color: #a8d0ff;
 }
 /* Désactivé */
 .cell.disabled {
@@ -183,7 +186,7 @@ body {
 }
 /* Dépassement */
 .cell.error {
-  background-color: #f44336 !important;
+  background-color: #f44336;
   color: white;
 }
 /* =====================
