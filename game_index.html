@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=430, initial-scale=1.0">
+<title>Accueil</title>
+
+<!-- appel FONTAWESOME -->
+<link href="css/css_fontawesome/fontawesome.css" rel="stylesheet" />
+<link href="css/css_fontawesome/brands.css" rel="stylesheet" />
+<link href="css/css_fontawesome/solid.css" rel="stylesheet" />
+<link href="css/css_fontawesome/sharp-thin.css" rel="stylesheet" />
+<link href="css/css_fontawesome/sharp-duotone-thin.css" rel="stylesheet" />
+
+<!-- appel FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+
+<!-- appel BOOTSTRAP -->
+<link href="dist_bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- CSS -->
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<div class="game-container">
+  <div class="home-title text-dark" data-i18n="home_title"></div>
+  <button class="btn btn-success home-btn" onclick="goToGame()" data-i18n="home_play"></button>
+  <button class="btn btn-warning home-btn my-3" onclick="goToScore()" data-i18n="home_score"> </button>
+  <button class="btn btn-primary home-btn" onclick="goToParams()" data-i18n="home_params"></button>
+</div>
+
+<!-- appel LANGUE --> 
+<script src="scripts/i18n/fr.js"></script> 
+<script src="scripts/i18n/uk.js"></script> 
+<script src="scripts/i18n/es.js"></script> 
+<script src="scripts/i18n/it.js"></script> 
+<script src="scripts/i18n/pt.js"></script> 
+<script src="scripts/js_langchoice.js"></script> 
+<!-- appel ROUTES --> 
+<script src="scripts/js_routes.js"></script> 
+<!-- appel BOOTSTRAP --> 
+<script src="dist_bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -16,7 +16,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
 
 <!-- appel BOOTSTRAP -->
-<link href="dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="dist_bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- CSS -->
 <link rel="stylesheet" href="style.css">
@@ -26,13 +26,21 @@
 <div class="game-container">
   <div class="top-bar">
     <div class="target-box" id="target"></div>
-    <button id="pauseBtn" data-i18n="pause"></button>
-    <button id="toolsBtn" data-i18n="params" onclick="goToParams()"></button>
+    <button id="pauseBtn" data-i18n="game_pause"></button>
+    <button id="toolsBtn" data-i18n="game_params" onclick="goToParams()"></button>
   </div>
   <div class="current-sum">
-    <span data-i18n="current_sum">
+    <span data-i18n="game_current_sum">
     </span>
     <span id="currentSumValue">
+      0
+    </span>
+    <span class="separator">
+      |
+    </span>
+    <span data-i18n="game_score">
+    </span>
+    <span id="scoreValue">
       0
     </span>
   </div>
@@ -44,20 +52,45 @@
   </div>
   <div class="grid" id="grid"></div>
   <div class="buttons">
-    <button id="refresh" data-i18n="refresh"></button>
-    <button id="reset" data-i18n="reset"></button>
-    <button id="quit" data-i18n="quit"></button>
+    <button id="refresh" data-i18n="game_refresh"></button>
+    <button id="reset" data-i18n="game_reset"></button>
+    <button id="quit" data-i18n="game_quit"></button>
+  </div>
+</div>
+	
+<!-- modal FIN DE JEU -->
+<div class="modal fade" id="gameOverModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content bg-dark text-white">
+      <div class="modal-header">
+        <h5 class="modal-title" data-i18n="game_overtitle"></h5>
+      </div>
+      <div class="modal-body text-center">
+        <p data-i18n="game_overtext"></p>
+      </div>
+      <div class="modal-footer d-flex flex-column gap-2">
+        <button class="btn btn-success w-100" onclick="restartGame()" data-i18n="game_restart"></button>
+        <button class="btn btn-danger w-100" onclick="goToMenu()" data-i18n="game_quit"></button>
+      </div>
+    </div>
   </div>
 </div>
 
+<!-- appel SON -->
+<audio id="tapSound" src="assets/sound/sound_tap.mp3" preload="auto"></audio>
+<audio id="errorSound" src="assets/sound/sound_error.mp3" preload="auto"></audio>
 <!-- appel LANGUE --> 
 <script src="scripts/i18n/fr.js"></script> 
-<script src="scripts/i18n/en.js"></script> 
+<script src="scripts/i18n/uk.js"></script> 
 <script src="scripts/i18n/es.js"></script> 
+<script src="scripts/i18n/it.js"></script> 
+<script src="scripts/i18n/pt.js"></script> 
 <script src="scripts/js_langchoice.js"></script> 
-<!-- appel SCRIPT --> 
-<script src="scripts/script.js"></script> 
+<!-- appel ROUTES --> 
+<script src="scripts/js_routes.js"></script> 
 <!-- appel BOOTSTRAP --> 
-<script src="dist/js/bootstrap.bundle.min.js"></script>
+<script src="dist_bootstrap/js/bootstrap.bundle.min.js"></script> 
+<!-- appel SCRIPT --> 
+<script src="scripts/script.js"></script>
 </body>
 </html>
