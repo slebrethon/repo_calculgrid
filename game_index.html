@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=430, initial-scale=1.0">
+<title>page INDEX</title>
+<!-- appel CSS-GLOBAL -->
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<div class="game-container">
+  <div class="home-title text-dark" data-i18n="home_title"></div>
+  <button class="btn btn-success home-btn" onclick="goToGame()" data-i18n="home_play"></button>
+  <button class="btn btn-warning home-btn mt-3" onclick="goToScore()" data-i18n="home_score"> </button>
+  <button class="btn btn-primary home-btn mt-3" onclick="goToParams()" data-i18n="home_params"></button>
+	<button class="btn btn-primary home-btn mt-3" onclick="goToTuto()" data-i18n="home_tuto"></button>
+</div>
+
+<!-- appel JS-GLOBAL --> 
+<script src="scripts/js_include.js"></script>
+</body>
+</html>

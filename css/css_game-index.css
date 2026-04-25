@@ -1,0 +1,23 @@
+
+.home-container {
+	width: 430px;
+	height: 932px;
+	margin: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 20px;
+	padding: 20px;
+}
+.home-title {
+	text-align: center;
+	font-size: 28px;
+	font-weight: bold;
+	margin-bottom: 40px;
+}
+.home-btn {
+	height: 70px;
+	font-size: 18px;
+	font-weight: bold;
+	border-radius: 12px;
+}

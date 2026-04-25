@@ -15,7 +15,7 @@
   font-style: normal;
   font-weight: 900;
   font-display: block;
-  src: url("../../font/font_fontawesome/fa-solid-900.woff2");
+  src: url("../../assets/font/font_fontawesome/fa-solid-900.woff2");
 }
 .fas {
   --fa-family: var(--fa-family-classic);
