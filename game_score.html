@@ -8,9 +8,10 @@
 <!-- appel FONTAWESOME -->
 <link href="css/css_fontawesome/fontawesome.css" rel="stylesheet" />
 <link href="css/css_fontawesome/brands.css" rel="stylesheet" />
+<link href="css/css_fontawesome/thin.css" rel="stylesheet" />
+<link href="css/css_fontawesome/light.css" rel="stylesheet" />
+<link href="css/css_fontawesome/regular.css" rel="stylesheet" />
 <link href="css/css_fontawesome/solid.css" rel="stylesheet" />
-<link href="css/css_fontawesome/sharp-thin.css" rel="stylesheet" />
-<link href="css/css_fontawesome/sharp-duotone-thin.css" rel="stylesheet" />
 <!-- appel FONT -->
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
 <!-- appel BOOTSTRAP -->
@@ -20,70 +21,35 @@
 </head>
 
 <body>
-
 <div class="game-container">
-
   <h2 data-i18n="score_title"></h2>
-
-  <table class="table table-dark table-striped mt-3">
+  <table>
     <thead>
       <tr>
         <th>#</th>
-        <th data-i18n="score_value"></th>
-        <th data-i18n="score_date"></th>
+        <th>Score</th>
+        <th>Date</th>
       </tr>
     </thead>
-    <tbody id="scoreTable"></tbody>
+    <tbody id="scoreTable">
+    </tbody>
   </table>
-
   <button class="btn btn-secondary w-100 mt-3" onclick="goToMenu()" data-i18n="param_back"></button>
-
 </div>
 
-<!-- LANG -->
+<!-- LANG --> 
 <script src="scripts/i18n/fr.js"></script> 
-<script src="scripts/i18n/en.js"></script> 
+<script src="scripts/i18n/uk.js"></script> 
 <script src="scripts/i18n/es.js"></script> 
 <script src="scripts/i18n/it.js"></script> 
 <script src="scripts/i18n/pt.js"></script> 
-<script src="scripts/js_langchoice.js"></script>
-
-<!-- ROUTES -->
-<script src="scripts/js_routes.js"></script>
-
-<!-- SCRIPT -->
-<script>
-function loadScores() {
-
-  const table = document.getElementById("scoreTable");
-  let scores = JSON.parse(localStorage.getItem("game_scores")) || [];
-
-  // Trier du meilleur au pire
-  scores.sort((a, b) => b.score - a.score);
-
-  table.innerHTML = "";
-
-  scores.forEach((entry, index) => {
-
-    let row = `
-      <tr>
-        <td>${index + 1}</td>
-        <td>${entry.score}</td>
-        <td>${entry.date}</td>
-      </tr>
-    `;
-
-    table.innerHTML += row;
-  });
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  applyTranslations();
-  loadScores();
-});
-</script>
-
-<script src="dist/js/bootstrap.bundle.min.js"></script>
+<script src="scripts/js_langchoice.js"></script> 
+<!-- SCORE --> 
+<script src="scripts/js_scores.js"></script> 
+<!-- ROUTES --> 
+<script src="scripts/js_routes.js"></script> 
+<!-- appel BOOTSTRAP --> 
+<script src="dist_bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

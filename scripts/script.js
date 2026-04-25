@@ -407,12 +407,19 @@ function generateGrid() {
 // GAME OVER
 // =====================
 function saveScore(finalScore) {
-  let scores = JSON.parse(localStorage.getItem("game_scores")) || [];
-  scores.push({
-    score: finalScore,
-    date: new Date().toLocaleString()
-  });
-  localStorage.setItem("game_scores", JSON.stringify(scores));
+
+  fetch("scripts/php_savescores.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        score: finalScore
+      })
+    })
+    .then(res => res.text())
+    .then(data => console.log("PHP RESPONSE:", data))
+    .catch(err => console.error("Erreur:", err));
 }
 
 function handleGameOver() {
