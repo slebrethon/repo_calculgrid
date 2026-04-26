@@ -1,46 +1,28 @@
-// =====================
-// AFFICHAGE SCORE
-// =====================
-async function loadScores() {
-
-  console.log("LOAD SCORES START");
+function loadScores() {
 
   const table = document.getElementById("scoreTable");
 
-  try {
-    const res = await fetch("scripts/php_getscores.php");
+  let scores =
+    JSON.parse(localStorage.getItem("game_scores")) || [];
 
-    console.log("FETCH OK");
+  table.innerHTML = "";
 
-    const scores = await res.json();
-
-    console.log("DATA:", scores);
-
-    table.innerHTML = "";
-
-    scores.forEach((entry, index) => {
-
-      let row = `
-        <tr>
-          <td>${index + 1}</td>
-          <td>${entry.score}</td>
-          <td>${entry.date}</td>
-        </tr>
-      `;
-
-      table.innerHTML += row;
-    });
-
-  } catch (error) {
-
-    console.error("ERREUR:", error);
-  }
   if (scores.length === 0) {
-    table.innerHTML = `<tr><td colspan="3">Aucun score</td></tr>`;
+    table.innerHTML =
+      `<tr><td colspan="3">Aucun score</td></tr>`;
+    return;
   }
+
+  scores.forEach((entry, index) => {
+
+    table.innerHTML += `
+      <tr>
+        <td>${index + 1}</td>
+        <td>${entry.score}</td>
+        <td>${entry.date}</td>
+      </tr>
+    `;
+  });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("PAGE LOADED");
-  loadScores();
-});
+document.addEventListener("appReady", loadScores);

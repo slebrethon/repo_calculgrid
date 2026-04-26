@@ -10,13 +10,14 @@ const fr = {
   game_params: "paramètre",
   game_overtitle: "Fin de partie",
   game_overtext: "Le temps de jeu est écoulé",
-	game_restart: "rejouer",
+  game_restart: "rejouer",
 
   /* HOME */
   home_title: "Jeu de calcul",
   home_play: "Jouer",
   home_score: "Classement",
   home_params: "Paramètres",
+  home_tuto: "Tutoriel",
 
   /* SCORE */
   score_title: "Classement",
@@ -34,6 +35,27 @@ const fr = {
   param_sound_title: "Son",
   param_sound_sfx: "Effets sonores",
   param_sound_music: "Musique",
-  param_back: "retour"
+  param_back: "retour",
+
+  /* TUTO */
+  tuto_step1_title: "Étape 1",
+  tuto_step1_text: "Voici la somme à atteindre.",
+  tuto_step2_title: "Étape 2",
+  tuto_step2_text: "Voici le bouton pause.",
+  tuto_step3_title: "Étape 3",
+  tuto_step3_text: "Voici la somme actuelle.",
+  tuto_step4_title: "Étape 4",
+  tuto_step4_text: "Voici la jauge de temps.",
+  tuto_step5_title: "Étape 5",
+  tuto_step5_text: "Voici la progression.",
+  tuto_step6_title: "Étape 6",
+  tuto_step6_text: "Voici la grille de jeu.",
+  tuto_step7_title: "Étape 7",
+  tuto_step7_text: "Voici les boutons d'action.",
+  tuto_step8_title: "Étape 8",
+  tuto_step8_text: "Vous êtes prêt à jouer !",
+  tuto_btn_prev: "Précédent",
+  tuto_btn_next: "Suivant",
+  tuto_btn_quit: "Quitter"
 
 };

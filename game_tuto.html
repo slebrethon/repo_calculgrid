@@ -3,8 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=430, initial-scale=1.0">
-<title>page GRID</title>
-<!-- appel CSS -->
+<title>Tutoriel</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
@@ -44,30 +43,18 @@
   </div>
 </div>
 
-<!-- modal FIN DE JEU -->
-<div class="modal fade" id="gameOverModal" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content bg-dark text-white">
-      <div class="modal-header">
-        <h5 class="modal-title" data-i18n="game_overtitle"></h5>
-      </div>
-      <div class="modal-body text-center">
-        <p data-i18n="game_overtext"></p>
-      </div>
-      <div class="modal-footer d-flex flex-column gap-2">
-        <button class="btn btn-success w-100" onclick="restartGame()" data-i18n="game_restart"></button>
-        <button class="btn btn-danger w-100" onclick="goToMenu()" data-i18n="game_quit"></button>
-      </div>
+<!-- MODALE -->
+<div class="tutorial-modal" id="tutorialModal">
+  <div class="tutorial-box">
+    <h3 id="tutoTitle"></h3>
+    <p id="tutoText"></p>
+    <div class="tutorial-actions">
+      <button id="modalPrev" onclick="prevStep()"></button>
+      <button id="modalNext" onclick="nextStep()"></button>
+      <button id="modalQuit" onclick="goToMenu()"></button>
     </div>
   </div>
 </div>
-
-<!-- appel SON -->
-<audio id="tapSound" src="assets/sound/sound_tap.mp3" preload="auto"></audio>
-<audio id="errorSound" src="assets/sound/sound_error.mp3" preload="auto"></audio>
-<!-- appel JS-GLOBAL --> 
-<script src="scripts/script.js"></script>
-	<script src="scripts/js_include.js"></script>
-	
+<script src="scripts/js_include.js"></script>
 </body>
 </html>

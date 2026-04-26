@@ -2,11 +2,13 @@
 // ROUTES GLOBAL APP
 // =====================
 const ROUTES = {
+  MENU: "game_index.html",
   GAME: "game_grid.html",
-  SCORE: "game_score.html",
   PARAMS: "game_params.html",
-  MENU: "game_index.html"
+  SCORE: "game_score.html",
+  TUTO: "game_tuto.html"
 };
+
 // =====================
 // NAVIGATION HELPERS
 // =====================
@@ -21,4 +23,7 @@ function goToParams() {
 }
 function goToMenu() {
   window.location.href = ROUTES.MENU;
+}
+function goToTuto() {
+  window.location.href = ROUTES.TUTO;
 }
