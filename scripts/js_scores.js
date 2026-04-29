@@ -18,6 +18,7 @@ function loadScores() {
     table.innerHTML += `
       <tr>
         <td>${index + 1}</td>
+				<td>${entry.level}</td>
         <td>${entry.score}</td>
         <td>${entry.date}</td>
       </tr>
