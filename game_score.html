@@ -3,20 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=430, initial-scale=1.0">
-<title>Classement</title>
-
-<!-- appel FONTAWESOME -->
-<link href="css/css_fontawesome/fontawesome.css" rel="stylesheet" />
-<link href="css/css_fontawesome/brands.css" rel="stylesheet" />
-<link href="css/css_fontawesome/thin.css" rel="stylesheet" />
-<link href="css/css_fontawesome/light.css" rel="stylesheet" />
-<link href="css/css_fontawesome/regular.css" rel="stylesheet" />
-<link href="css/css_fontawesome/solid.css" rel="stylesheet" />
-<!-- appel FONT -->
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
-<!-- appel BOOTSTRAP -->
-<link href="dist_bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<!-- CSS -->
+<title>page RANKING</title>
+<!-- appel CSS-GLOBAL -->
 <link rel="stylesheet" href="style.css">
 </head>
 
@@ -26,9 +14,15 @@
   <table>
     <thead>
       <tr>
-        <th>#</th>
-        <th>Score</th>
-        <th>Date</th>
+        <th>
+          #
+        </th>
+        <th>
+          Score
+        </th>
+        <th>
+          Date
+        </th>
       </tr>
     </thead>
     <tbody id="scoreTable">
@@ -37,19 +31,7 @@
   <button class="btn btn-secondary w-100 mt-3" onclick="goToMenu()" data-i18n="param_back"></button>
 </div>
 
-<!-- LANG --> 
-<script src="scripts/i18n/fr.js"></script> 
-<script src="scripts/i18n/uk.js"></script> 
-<script src="scripts/i18n/es.js"></script> 
-<script src="scripts/i18n/it.js"></script> 
-<script src="scripts/i18n/pt.js"></script> 
-<script src="scripts/js_langchoice.js"></script> 
-<!-- SCORE --> 
-<script src="scripts/js_scores.js"></script> 
-<!-- ROUTES --> 
-<script src="scripts/js_routes.js"></script> 
-<!-- appel BOOTSTRAP --> 
-<script src="dist_bootstrap/js/bootstrap.bundle.min.js"></script>
-
+<!-- appel JS-GLOBAL --> 
+<script src="scripts/js_include.js"></script>
 </body>
 </html>
