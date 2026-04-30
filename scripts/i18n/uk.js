@@ -2,6 +2,7 @@ const en = {
   /* GAME */
   game_current_sum: "Sum:",
   game_score: "Score:",
+	game_level: "Niveau :",
   game_refresh: "reset",
   game_reset: "refresh",
   game_quit: "quit",
@@ -10,7 +11,7 @@ const en = {
   game_params: "tools",
   game_overtitle: "Game Over",
   game_overtext: "Time is up",
-	game_restart: "Play again",
+  game_restart: "Play again",
 
   /* HOME */
   home_title: "Math Game",
@@ -34,5 +35,31 @@ const en = {
   param_sound_title: "Sound",
   param_sound_sfx: "Sound effects",
   param_sound_music: "Music",
-  param_back: "back"
+  param_back: "back",
+
+  /* TUTO */
+  tuto_step1_title: "Rules",
+  tuto_step1_text: "calculGRID is a mental math game. You have 2 minutes to reach the required sum using the number grid. Be careful, you can only choose squares around your first number, so you'll need to position yourself correctly to successfully complete the sum. To help you stay in the game as long as possible, the time gauge will decrease with each successful completion. The more times you complete a sequence of completions by passing through a large number of squares, the more it will affect the remaining time.",
+  tuto_step2_title: "Sum",
+  tuto_step2_text: "The target sum. This number changes with each completion, so pay attention and don't forget to check this square.",
+  tuto_step3_title: "Pause",
+  tuto_step3_text: "Stops the timer, but does not end your game session.",
+  tuto_step4_title: "Settings",
+  tuto_step4_text: "Gives you access to the application settings such as language, sound settings, etc...",
+  tuto_step5_title: "Timer",
+  tuto_step5_text: "The game timer, which lasts for 2 minutes. When the gauge is full, it signals the end of the game for you. To prolong your game session, each successful bid of the requested amount reduces this progress bar.",
+  tuto_step6_title: "Progress Bar",
+  tuto_step6_text: "This bar tracks your progress each time you successfully bid an amount. Each time this bar is full, you advance to the next level.",
+  tuto_step7_title: "Grid",
+  tuto_step7_text: "This is a selection grid where you can bid the requested amount. Once the first square is selected, only the numbers surrounding that selection can be used.",
+  tuto_step8_title: "Refresh",
+  tuto_step8_text: "This allows you to restart your game. You begin with a clean slate, a new grid, and a progress bar reset to zero.",
+  tuto_step9_title: "Clear",
+  tuto_step9_text: "This clears the grid of your selected amount. The timer continues to advance, and you retain your progress.",
+  tuto_step10_title: "Quit",
+  tuto_step10_text: "This allows you to completely exit the game.",
+  tuto_btn_prev: "Previous",
+  tuto_btn_next: "Next",
+  tuto_btn_quit: "Quit",
+  tuto_btn_finish: "End"
 };

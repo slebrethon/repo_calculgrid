@@ -1,6 +1,6 @@
 // =====================================
 // js_tuto.js
-// Tutoriel interactif
+// Tutoriel interactif complet
 // =====================================
 
 const tutoSteps = [
@@ -8,42 +8,52 @@ const tutoSteps = [
   {
     titleKey: "tuto_step1_title",
     textKey: "tuto_step1_text",
-    className: "step-target"
+    className: "tuto-01"
   },
   {
     titleKey: "tuto_step2_title",
     textKey: "tuto_step2_text",
-    className: "step-pause"
+    className: "tuto-02"
   },
   {
     titleKey: "tuto_step3_title",
     textKey: "tuto_step3_text",
-    className: "step-sum"
+    className: "tuto-03"
   },
   {
     titleKey: "tuto_step4_title",
     textKey: "tuto_step4_text",
-    className: "step-time"
+    className: "tuto-04"
   },
   {
     titleKey: "tuto_step5_title",
     textKey: "tuto_step5_text",
-    className: "step-progress"
+    className: "tuto-05"
   },
   {
     titleKey: "tuto_step6_title",
     textKey: "tuto_step6_text",
-    className: "step-grid"
+    className: "tuto-06"
   },
   {
     titleKey: "tuto_step7_title",
     textKey: "tuto_step7_text",
-    className: "step-buttons"
+    className: "tuto-07"
   },
   {
     titleKey: "tuto_step8_title",
     textKey: "tuto_step8_text",
-    className: "step-center"
+    className: "tuto-08"
+  },
+  {
+    titleKey: "tuto_step9_title",
+    textKey: "tuto_step9_text",
+    className: "tuto-09"
+  },
+  {
+    titleKey: "tuto_step10_title",
+    textKey: "tuto_step10_text",
+    className: "tuto-10"
   }
 
 ];
@@ -52,7 +62,7 @@ let currentStep = 0;
 
 
 // =====================
-// GRID
+// GRID DEMO
 // =====================
 function generateTutorialGrid() {
 
@@ -79,53 +89,127 @@ function generateTutorialGrid() {
         cell.classList.add("gray");
       }
 
-      cell.textContent = Math.floor(Math.random() * 9) + 1;
+      cell.textContent =
+        Math.floor(Math.random() * 9) + 1;
 
       grid.appendChild(cell);
     }
   }
 
-  // valeurs interface
-  document.getElementById("target").textContent = 15;
-  document.getElementById("currentSumValue").textContent = 0;
-  document.getElementById("scoreValue").textContent = 0;
+  // Valeurs interface
+  const target = document.getElementById("target");
+  const sum = document.getElementById("currentSumValue");
+  const score = document.getElementById("scoreValue");
+  const timeBar = document.getElementById("timeBar");
+  const progressBar =
+    document.getElementById("progressBar");
 
-  document.getElementById("timeBar").style.width = "40%";
-  document.getElementById("progressBar").style.width = "20%";
+  if (target) target.textContent = 15;
+  if (sum) sum.textContent = 0;
+  if (score) score.textContent = 0;
+
+  if (timeBar) {
+    timeBar.style.width = "40%";
+  }
+
+  if (progressBar) {
+    progressBar.style.width = "20%";
+  }
 }
 
 
 // =====================
-// AFFICHAGE MODALE
+// AFFICHAGE ETAPE
 // =====================
 function showStep() {
 
   const step = tutoSteps[currentStep];
-  const modal = document.getElementById("tutorialModal");
 
+  const modal =
+    document.getElementById("tutorialModal");
+
+  if (!modal) return;
+
+  // Reset classes
   modal.className = "tutorial-modal";
   modal.classList.add(step.className);
 
-  document.getElementById("tutoTitle").textContent =
-    getText(step.titleKey) || "";
+  // Titre
+  const title =
+    document.getElementById("tutoTitle");
 
-  document.getElementById("tutoText").textContent =
-    getText(step.textKey) || "";
+  if (title) {
+    title.innerHTML =
+      getText(step.titleKey);
+  }
 
-  document.getElementById("modalPrev").textContent =
-    getText("tuto_btn_prev");
+  // Texte
+  const text =
+    document.getElementById("tutoText");
 
-  document.getElementById("modalNext").textContent =
-    getText("tuto_btn_next");
+  if (text) {
+    text.innerHTML =
+      getText(step.textKey);
+  }
 
-  document.getElementById("modalQuit").textContent =
-    getText("tuto_btn_quit");
+  // Progression
+  const total = tutoSteps.length;
+  const current = currentStep + 1;
 
-  document.getElementById("modalPrev").disabled =
-    currentStep === 0;
+  const counter =
+    document.getElementById("tutoCounter");
 
-  document.getElementById("modalNext").disabled =
-    currentStep === tutoSteps.length - 1;
+  if (counter) {
+    counter.textContent =
+      current + " / " + total;
+  }
+
+  const fill =
+    document.getElementById(
+      "tutoProgressFill"
+    );
+
+  if (fill) {
+    fill.style.width =
+      ((current / total) * 100) + "%";
+  }
+
+  // Boutons
+  const btnPrev =
+    document.getElementById("modalPrev");
+
+  const btnNext =
+    document.getElementById("modalNext");
+
+  const btnQuit =
+    document.getElementById("modalQuit");
+
+  if (btnPrev) {
+    btnPrev.textContent =
+      getText("tuto_btn_prev");
+
+    btnPrev.disabled =
+      currentStep === 0;
+  }
+
+  if (btnNext) {
+
+    if (currentStep === total - 1) {
+      btnNext.textContent =
+        getText("tuto_btn_finish") ||
+        getText("tuto_btn_next");
+    } else {
+      btnNext.textContent =
+        getText("tuto_btn_next");
+    }
+
+    btnNext.disabled = false;
+  }
+
+  if (btnQuit) {
+    btnQuit.textContent =
+      getText("tuto_btn_quit");
+  }
 }
 
 
@@ -134,9 +218,18 @@ function showStep() {
 // =====================
 function nextStep() {
 
-  if (currentStep < tutoSteps.length - 1) {
+  if (
+    currentStep <
+    tutoSteps.length - 1
+  ) {
+
     currentStep++;
     showStep();
+
+  } else {
+
+    // Dernière étape
+    goToMenu();
   }
 }
 
@@ -155,8 +248,14 @@ function prevStep() {
 function initTutorial() {
 
   generateTutorialGrid();
-
   showStep();
 }
 
-document.addEventListener("appReady", initTutorial);
+
+// =====================
+// READY
+// =====================
+document.addEventListener(
+  "appReady",
+  initTutorial
+);
