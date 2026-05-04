@@ -1,35 +1,75 @@
 const pt = {
   /* GAME */
-  game_current_sum: "Soma:",
-  game_score: "Pontuação:",
-  game_refresh: "atualizar",
-  game_reset: "limpar",
-  game_quit: "sair",
-  game_pause: "pausa",
-  game_play: "jogar",
-  game_params: "configurações",
+  game_current_sum: 'Soma:',
+  game_score: 'Pontuação:',
+  game_level: 'Niveau :',
+  game_refresh: 'atualizar',
+  game_reset: 'limpar',
+  game_quit: 'sair',
+  game_pause: 'pausa',
+  game_play: 'jogar',
+  game_params: 'configurações',
+  game_overtitle: 'Fim de jogo',
+  game_overtext: 'Tempo esgotado',
+  game_restart: 'Jogar novamente',
 
   /* HOME */
-  home_title: "Jogo de cálculo",
-  home_play: "Jogar",
-  home_score: "Classement",
-  home_params: "Configurações",
+  home_title: 'Jogo de cálculo',
+  home_play: 'Jogar',
+  home_score: 'Classement',
+  home_params: 'Configurações',
 
   /* SCORE */
-  score_title: "Leaderboard",
-  score_value: "Score",
-  score_date: "Date",
+  score_title: 'Pontuação',
+  score_value: 'Score',
+  score_date: 'Data',
+  score_clear: 'limpar',
 
   /* PARAMETERS */
-  param_title: "Configurações",
-  param_langue_title: "Escolha do idioma",
-  param_choice_fr: "Francês",
-  param_choice_uk: "Inglês",
-  param_choice_es: "Espanhol",
-  param_choice_it: "Italiano",
-  param_choice_pt: "Português",
-  param_sound_title: "Som",
-  param_sound_sfx: "Efeitos sonoros",
-  param_sound_music: "Música",
-  param_back: "voltar"
+  param_title: 'Configurações',
+  param_langue_title: 'Escolha do idioma',
+  param_choice_fr: 'Francês',
+  param_choice_uk: 'Inglês',
+  param_choice_es: 'Espanhol',
+  param_choice_it: 'Italiano',
+  param_choice_pt: 'Português',
+  param_sound_title: 'Som',
+  param_sound_sfx: 'Efeitos sonoros',
+  param_sound_music: 'Música',
+  param_back: 'voltar',
+
+  /* TUTO */
+  tuto_step1_title: 'Regras',
+  tuto_step1_text:
+    'calculGRID é um jogo de matemática mental. Você tem 2 minutos para atingir a soma necessária usando a grade numérica. Atenção: você só pode escolher quadrados próximos ao seu primeiro número, então precisará se posicionar corretamente para completar a soma com sucesso. Para ajudar você a permanecer no jogo o máximo possível, o indicador de tempo diminuirá a cada conclusão bem-sucedida. Quanto mais vezes você completar uma sequência de somas passando por um grande número de quadrados, mais isso afetará o tempo restante.',
+  tuto_step2_title: 'Soma',
+  tuto_step2_text:
+    'A soma alvo. Este número muda a cada conclusão, então preste atenção e não se esqueça de verificar este quadrado.',
+  tuto_step3_title: 'Pausar',
+  tuto_step3_text:
+    'Interrompe o cronômetro, mas não encerra sua sessão de jogo.',
+  tuto_step4_title: 'Configurações',
+  tuto_step4_text:
+    'Dá acesso às configurações do aplicativo, como idioma, configurações de som, etc...',
+  tuto_step5_title: 'Cronômetro',
+  tuto_step5_text:
+    'O cronômetro do jogo, que dura 2 minutos. Quando o indicador estiver cheio, ele sinaliza o fim do jogo para você. Para prolongar sua sessão de jogo, cada lance bem-sucedido do valor solicitado reduz esta barra de progresso.',
+  tuto_step6_title: 'Barra de Progresso',
+  tuto_step6_text:
+    'Esta barra acompanha seu progresso a cada lance bem-sucedido. Quando a barra estiver completa, você avança para o próximo nível.',
+  tuto_step7_title: 'Grade',
+  tuto_step7_text:
+    'Esta é uma grade de seleção onde você pode dar o lance com o valor solicitado. Após selecionar o primeiro quadrado, somente os números ao redor dessa seleção poderão ser usados.',
+  tuto_step8_title: 'Atualizar',
+  tuto_step8_text:
+    'Isso permite que você reinicie o jogo. Você começa do zero, com uma nova grade e a barra de progresso zerada.',
+  tuto_step9_title: 'Limpar',
+  tuto_step9_text:
+    'Isso limpa a grade com o valor selecionado. O cronômetro continua avançando e você mantém seu progresso.',
+  tuto_step10_title: 'Sair',
+  tuto_step10_text: 'Isso permite que você saia completamente do jogo.',
+  tuto_btn_prev: 'Anterior',
+  tuto_btn_next: 'Próximo',
+  tuto_btn_quit: 'Sair',
+  tuto_btn_finish: 'Fim',
 };

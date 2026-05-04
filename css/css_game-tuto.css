@@ -1,0 +1,137 @@
+.tutorial-modal {
+  position: fixed;
+  z-index: 999;
+  width: 290px;
+  max-width: 90%;
+}
+.tutorial-box {
+  background: black;
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, .25);
+  text-align: center;
+  color: white;
+  &:after {
+    content: '';
+    margin-top: -5px;
+    background: black;
+    display: block;
+    height: 15px;
+    width: 15px;
+    position: absolute;
+    top: 0;
+    transform: rotate(45deg);
+  }
+}
+.tutorial-box h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.tutorial-box p {
+  font-size: 15px;
+  line-height: 1.4;
+  margin: 0;
+}
+.tutorial-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 18px;
+}
+.tutorial-actions button {
+  flex: 1;
+  font-size: 13px;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  background: #ececec;
+  font-weight: 600;
+}
+/* Positions */
+.tuto-01 {
+  .tutorial-box:after {
+    display: none;
+  }
+}
+.tuto-02 {
+  margin-top: -480px;
+}
+.tuto-03 {
+  margin-top: -500px;
+  .tutorial-box:after {
+    left: 165px;
+  }
+}
+.tuto-04 {
+  margin-top: -500px;
+  margin-left: 100px;
+  .tutorial-box:after {
+    left: 225px;
+  }
+}
+.tuto-05 {
+  margin-top: -240px;
+  .tutorial-box:after {
+    left: 100px;
+  }
+}
+.tuto-06 {
+  margin-top: -210px;
+  .tutorial-box:after {
+    left: 100px;
+  }
+}
+.tuto-07 {
+  .tutorial-box:after {
+    left: 100px;
+  }
+}
+.tuto-08 {
+  margin-top: 550px;
+  margin-left: -80px;
+  .tutorial-box:after {
+    left: 50px;
+    top: 222px;
+  }
+}
+.tuto-09 {
+  margin-top: 550px;
+  .tutorial-box:after {
+    left: 140px;
+    top: 215px;
+  }
+}
+.tuto-10 {
+  margin-top: 600px;
+	margin-left: 80px;
+  .tutorial-box:after {
+    left: 220px;
+    top: 180px;
+  }
+}
+.tutorial-progress-wrap{
+margin-top:12px;
+margin-bottom:12px;
+}
+
+.tutorial-progress-bar{
+height:8px;
+background:#e5e5e5;
+border-radius:20px;
+overflow:hidden;
+}
+
+.tutorial-progress-fill{
+height:100%;
+width:0%;
+background:#0d6efd;
+transition:width .35s ease;
+border-radius:20px;
+}
+
+.tutorial-counter{
+margin-top:6px;
+font-size:12px;
+font-weight:700;
+text-align:center;
+opacity:.75;
+}

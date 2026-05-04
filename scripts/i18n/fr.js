@@ -1,36 +1,76 @@
 const fr = {
   /* GAME */
-  game_current_sum: "Somme :",
-  game_score: "Score :",
-  game_refresh: "réactualiser",
-  game_reset: "vider",
-  game_quit: "quitter",
-  game_pause: "pause",
-  game_play: "jouer",
-  game_params: "paramètre",
+  game_current_sum: 'Somme :',
+  game_score: 'Score :',
+  game_level: 'Niveau :',
+  game_refresh: 'réactualiser',
+  game_reset: 'vider',
+  game_quit: 'quitter',
+  game_pause: 'pause',
+  game_play: 'jouer',
+  game_params: 'paramètre',
+  game_overtitle: 'Fin de partie',
+  game_overtext: 'Le temps de jeu est écoulé',
+  game_restart: 'rejouer',
 
   /* HOME */
-  home_title: "Jeu de calcul",
-  home_play: "Jouer",
-  home_score: "Classement",
-  home_params: "Paramètres",
+  home_title: 'Jeu de calcul',
+  home_play: 'Jouer',
+  home_score: 'Classement',
+  home_params: 'Paramètres',
+  home_tuto: 'Tutoriel',
 
   /* SCORE */
-  score_title: "Classement",
-  score_value: "Score",
-  score_date: "Date",
+  score_title: 'Classement',
+  score_value: 'Score',
+  score_date: 'Date',
+  score_clear: 'vider',
 
   /* PARAMETERS */
-  param_title: "Paramètres",
-  param_langue_title: "Choix de la langue",
-  param_choice_fr: "Français",
-  param_choice_uk: "Anglais",
-  param_choice_es: "Espagnole",
-  param_choice_it: "Italien",
-  param_choice_pt: "Portugais",
-  param_sound_title: "Son",
-  param_sound_sfx: "Effets sonores",
-  param_sound_music: "Musique",
-  param_back: "retour"
+  param_title: 'Paramètres',
+  param_langue_title: 'Choix de la langue',
+  param_choice_fr: 'Français',
+  param_choice_uk: 'Anglais',
+  param_choice_es: 'Espagnole',
+  param_choice_it: 'Italien',
+  param_choice_pt: 'Portugais',
+  param_sound_title: 'Son',
+  param_sound_sfx: 'Effets sonores',
+  param_sound_music: 'Musique',
+  param_back: 'retour',
 
+  /* TUTO */
+  tuto_step1_title: 'Les Règles',
+  tuto_step1_text:
+    "calculGRID est un jeu de calcul mental. <strong>Vous disposez de 2 minutes pour atteindre la somme demandée</strong> à l'aide de la grille de chiffre.<br /><br /><strong>Attention</strong> vous ne pourrez choisir que les cases autour de votre premier chiffre, il faudra donc bien vous positionner pour réussir à valider la somme.Pour vous aidez à rester le plus longtemps possible de la compétition, à chaque validation la gauge de temps sera réduit. Plus vous enchaînez les validations en passant par grand nombre de case plus cela aura un impact sur le temps restant.",
+  tuto_step2_title: 'Somme',
+  tuto_step2_text:
+    "La somme à attendre. Ce nombre change à chaque validation, soyez vigilant est n'oublier de jetter un oeil sur cette case.",
+  tuto_step3_title: 'Pause',
+  tuto_step3_text:
+    'Permet de stopper le compteur de temps, mais ne clôture pas votre session de jeu.',
+  tuto_step4_title: 'Paramètre',
+  tuto_step4_text:
+    "Vous donne accès aux paramètres de l'application comme le changement de langue, la gestion du son, etc...",
+  tuto_step5_title: 'Temps',
+  tuto_step5_text:
+    "la barre de temps de jeu d'une durée de 2 minutes. Si la gauge est complète cela sonne la fin de la partie pour vous.<br /><br />Pour faire durée votre session de jeu chaque validation de la somme demandé vous permet de faire descendre cette barre.",
+  tuto_step6_title: 'Progression',
+  tuto_step6_text:
+    'Barre de progression de votre session. Cette barre augmente à chaque fois que vous validez une somme.<br /><br />Chaque fois que cette gauge est complète vous changez de niveau.',
+  tuto_step7_title: 'Grille',
+  tuto_step7_text:
+    'Grille de sélection vous permettant de valider de la somme demandée.<br /><br /><strong>Attention</strong> une fois la première case sélectionné uniquement les chiffres autour de cette sélection pourront être utilisés.',
+  tuto_step8_title: 'Réactualisation',
+  tuto_step8_text:
+    'Permet de recommencer votre partie. Vous repartez avec un score vierge, une nouvelle grille et une gauge de progression à zéro.',
+  tuto_step9_title: 'Vider',
+  tuto_step9_text:
+    'Vous permet de vider la grille de votre sélection. La gauge de temps continue à avancer et vous garder votre progression.',
+  tuto_step10_title: 'Quitter',
+  tuto_step10_text: 'Permet de quitter complètement la partie.',
+  tuto_btn_prev: 'Précédent',
+  tuto_btn_next: 'Suivant',
+  tuto_btn_quit: 'Quitter',
+  tuto_btn_finish: 'Fin',
 };

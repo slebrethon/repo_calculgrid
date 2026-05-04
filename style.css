@@ -1,3 +1,19 @@
+/* appel FONTAWESOME */
+@import url(css/css_fontawesome/fontawesome.css);
+@import url(css/css_fontawesome/brands.css);
+@import url(css/css_fontawesome/thin.css);
+@import url(css/css_fontawesome/light.css);
+@import url(css/css_fontawesome/regular.css);
+@import url(css/css_fontawesome/solid.css);
+
+/* appel BOOTSTRAP */
+@import url(dist_bootstrap/css/bootstrap.min.css);
+
+/* appel FONT */
+@import url(css/css_font-google.css);
+
+/* appel STYLE */
 @import url(css/css_game-index.css);
-@import url(css/css_game-params.css);
 @import url(css/css_game-grid.css);
+@import url(css/css_game-params.css);
+@import url(css/css_game-tuto.css);
