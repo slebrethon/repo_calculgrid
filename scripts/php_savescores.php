@@ -2,7 +2,7 @@
 
 header("Content-Type: application/json");
 
-// Lire données
+// Lire donnees
 $data = json_decode(file_get_contents("php://input"), true);
 
 if (!$data || !isset($data["score"])) {

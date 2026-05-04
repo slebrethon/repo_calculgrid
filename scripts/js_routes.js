@@ -2,11 +2,11 @@
 // ROUTES GLOBAL APP
 // =====================
 const ROUTES = {
-  MENU: "game_index.html",
-  GAME: "game_grid.html",
-  PARAMS: "game_params.html",
-  SCORE: "game_score.html",
-  TUTO: "game_tuto.html"
+  MENU: 'game_index.html',
+  GAME: 'game_grid.html',
+  PARAMS: 'game_params.html',
+  SCORE: 'game_score.html',
+  TUTO: 'game_tuto.html',
 };
 
 // =====================
