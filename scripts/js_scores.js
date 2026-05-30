@@ -1,20 +1,16 @@
 function loadScores() {
+  const table = document.getElementById('scoreTable');
 
-  const table = document.getElementById("scoreTable");
+  let scores = JSON.parse(localStorage.getItem('game_scores')) || [];
 
-  let scores =
-    JSON.parse(localStorage.getItem("game_scores")) || [];
-
-  table.innerHTML = "";
+  table.innerHTML = '';
 
   if (scores.length === 0) {
-    table.innerHTML =
-      `<tr><td colspan="3">Aucun score</td></tr>`;
+    table.innerHTML = `<tr><td colspan="3">Aucun score</td></tr>`;
     return;
   }
 
   scores.forEach((entry, index) => {
-
     table.innerHTML += `
       <tr>
         <td>${index + 1}</td>
@@ -26,4 +22,11 @@ function loadScores() {
   });
 }
 
-document.addEventListener("appReady", loadScores);
+document.addEventListener('appReady', loadScores);
+
+function clearScores() {
+  if (confirm('Êtes-vous sûr de vouloir vider tous les scores ?')) {
+    localStorage.removeItem('game_scores');
+    loadScores();
+  }
+}

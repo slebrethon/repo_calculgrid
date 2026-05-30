@@ -1,40 +1,40 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=430, initial-scale=1.0">
-<title>page RANKING</title>
-<!-- appel CSS-GLOBAL -->
-<link rel="stylesheet" href="style.css">
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=430, initial-scale=1.0" />
+    <title>page RANKING</title>
+    <!-- appel CSS-GLOBAL -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<body>
-<div class="game-container">
-  <h2 data-i18n="score_title"></h2>
-  <table>
-    <thead>
-      <tr>
-        <th>
-          #
-        </th>
-        <th>
-          Niveau
-        </th>
-        <th>
-          Score
-        </th>
-        <th>
-          Date
-        </th>
-      </tr>
-    </thead>
-    <tbody id="scoreTable">
-    </tbody>
-  </table>
-  <button class="btn btn-secondary w-100 mt-3" onclick="goToMenu()" data-i18n="param_back"></button>
-</div>
+  <body>
+    <div class="game-container">
+      <h2 data-i18n="score_title"></h2>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Niveau</th>
+            <th>Score</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody id="scoreTable"></tbody>
+      </table>
+      <button
+        class="btn btn-secondary w-100 mt-3"
+        onclick="goToMenu()"
+        data-i18n="param_back"
+      ></button>
+      <button
+        class="btn btn-danger w-100 mt-3"
+        onclick="clearScores()"
+        data-i18n="score_clear"
+      ></button>
+    </div>
 
-<!-- appel JS-GLOBAL --> 
-<script src="scripts/js_include.js"></script>
-</body>
+    <!-- appel JS-GLOBAL -->
+    <script src="scripts/js_include.js"></script>
+  </body>
 </html>

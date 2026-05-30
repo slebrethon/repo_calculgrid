@@ -1,65 +1,111 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=430, initial-scale=1.0">
-<title>Paramètres</title>
-<!-- CSS -->
-<link rel="stylesheet" href="style.css">
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=430, initial-scale=1.0" />
+    <title>Paramètres</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<body>
-<div class="game-container">
-  <h2 data-i18n="param_title"></h2>
-  
-  <!-- Accordion -->
-  <div class="accordion" id="accordionParams"> 
-    
-    <!-- LANGUE -->
-    <div class="accordion-item">
-      <h2 class="accordion-header">
-        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLang" data-i18n="param_langue_title"></button>
-      </h2>
-      <div id="collapseLang" class="accordion-collapse collapse">
-        <div class="accordion-body">
-          <button class="btn btn-outline-primary w-100 mb-2 lang-btn" onclick="setLanguage('fr')" data-i18n="param_choice_fr"></button>
-          <button class="btn btn-outline-primary w-100 mb-2 lang-btn" onclick="setLanguage('uk')" data-i18n="param_choice_uk"></button>
-          <button class="btn btn-outline-primary w-100 mb-2 lang-btn" onclick="setLanguage('es')" data-i18n="param_choice_es"></button>
-          <button class="btn btn-outline-primary w-100 mb-2 lang-btn" onclick="setLanguage('it')" data-i18n="param_choice_it"></button>
-          <button class="btn btn-outline-primary w-100 mb-2 lang-btn" onclick="setLanguage('pt')" data-i18n="param_choice_pt"></button>
+  <body>
+    <div class="game-container">
+      <h2 data-i18n="param_title"></h2>
+
+      <!-- Accordion -->
+      <div class="accordion" id="accordionParams">
+        <!-- LANGUE -->
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button
+              class="accordion-button"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseLang"
+              data-i18n="param_langue_title"
+            ></button>
+          </h2>
+          <div id="collapseLang" class="accordion-collapse collapse">
+            <div class="accordion-body">
+              <button
+                class="btn btn-outline-primary w-100 mb-2 lang-btn"
+                onclick="setLanguage('fr')"
+                data-i18n="param_choice_fr"
+              ></button>
+              <button
+                class="btn btn-outline-primary w-100 mb-2 lang-btn"
+                onclick="setLanguage('uk')"
+                data-i18n="param_choice_uk"
+              ></button>
+              <button
+                class="btn btn-outline-primary w-100 mb-2 lang-btn"
+                onclick="setLanguage('es')"
+                data-i18n="param_choice_es"
+              ></button>
+              <button
+                class="btn btn-outline-primary w-100 mb-2 lang-btn"
+                onclick="setLanguage('it')"
+                data-i18n="param_choice_it"
+              ></button>
+              <button
+                class="btn btn-outline-primary w-100 mb-2 lang-btn"
+                onclick="setLanguage('pt')"
+                data-i18n="param_choice_pt"
+              ></button>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="accordion-item">
-    <h2 class="accordion-header">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSound" data-i18n="param_sound_title"></button>
-    </h2>
-    <div id="collapseSound" class="accordion-collapse collapse show">
-      <div class="accordion-body"> 
-        
-        <!-- SFX -->
-        <div class="form-check form-switch mb-3">
-          <input class="form-check-input" type="checkbox" id="toggleSFX">
-          <label class="form-check-label" for="toggleSFX" data-i18n="param_sound_sfx"></label>
-        </div>
-        
-        <!-- MUSIC -->
-        <div class="form-check form-switch">
-          <input class="form-check-input" type="checkbox" id="toggleMusic">
-          <label class="form-check-label" for="toggleMusic" data-i18n="param_sound_music"></label>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button
+            class="accordion-button"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseSound"
+            data-i18n="param_sound_title"
+          ></button>
+        </h2>
+        <div id="collapseSound" class="accordion-collapse collapse show">
+          <div class="accordion-body">
+            <!-- SFX -->
+            <div class="form-check form-switch mb-3">
+              <input class="form-check-input" type="checkbox" id="toggleSFX" />
+              <label
+                class="form-check-label"
+                for="toggleSFX"
+                data-i18n="param_sound_sfx"
+              ></label>
+            </div>
+
+            <!-- MUSIC -->
+            <div class="form-check form-switch">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="toggleMusic"
+              />
+              <label
+                class="form-check-label"
+                for="toggleMusic"
+                data-i18n="param_sound_music"
+              ></label>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-  
-  <!-- Bouton retour -->
-  <div class="mt-4">
-    <button class="btn btn-secondary w-100" onclick="goBack()" data-i18n="param_back"></button>
-  </div>
-</div>
 
-<!-- appel JS-GLOBAL --> 
-<script src="scripts/js_include.js"></script>
-</body>
+      <!-- Bouton retour -->
+      <div class="mt-4">
+        <button
+          class="btn btn-secondary w-100"
+          onclick="goBack()"
+          data-i18n="param_back"
+        ></button>
+      </div>
+    </div>
+
+    <!-- appel JS-GLOBAL -->
+    <script src="scripts/js_include.js"></script>
+  </body>
 </html>
