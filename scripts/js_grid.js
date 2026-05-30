@@ -34,7 +34,7 @@ let currentSum = 0;
 let targetNumber = 0;
 
 let score = 0;
-let level = 0;
+let level = 1;
 
 let progress = 0;
 const maxProgress = 100;
@@ -424,18 +424,19 @@ function updateGridAfterWin() {
 
   reduceTimeAfterWin();
 
+  const availableNumbers = getAvailableNumbers();
+
   selectedPath.forEach((cell) => {
-    const val = Math.floor(Math.random() * 9) + 1;
+    const val = availableNumbers[Math.floor(Math.random() * availableNumbers.length)];
 
     cell.dataset.value = val;
     cell.textContent = val;
 
-    newSum += val;
-
     cell.classList.remove('selected', 'error');
   });
 
-  targetNumber = newSum;
+  const range = getTargetNumberRange();
+  targetNumber = Math.floor(Math.random() * (range[1] - range[0] + 1)) + range[0];
   targetBox.textContent = targetNumber;
 
   selectedPath = [];
@@ -449,12 +450,44 @@ function updateGridAfterWin() {
 }
 
 // =====================
+// GET AVAILABLE NUMBERS BY LEVEL
+// =====================
+function getAvailableNumbers() {
+  // Niveau 1: 0, 1, 2
+  // Niveau 2: 0, 1, 2, 3
+  // ...
+  // Niveau 9+: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+  const maxNumber = Math.min(level + 1, 9); // level 1 = max 2, level 2 = max 3, etc., max 9
+  const numbers = [];
+  for (let i = 0; i <= maxNumber; i++) {
+    numbers.push(i);
+  }
+  return numbers;
+}
+
+// =====================
+// GET TARGET NUMBER RANGE BY LEVEL
+// =====================
+function getTargetNumberRange() {
+  // Niveau 1-2: somme entre 1 et 10
+  // Niveau 3-5: somme entre 1 et 40
+  // Niveau 6-8: somme entre 1 et 60
+  // Niveau 9+: somme entre 1 et 99
+  if (level >= 9) return [1, 99];
+  if (level >= 6) return [1, 60];
+  if (level >= 3) return [1, 40];
+  return [1, 10];
+}
+
+// =====================
 // GENERATE GRID
 // =====================
 function generateGrid() {
   grid.innerHTML = '';
 
   cells = [];
+
+  const availableNumbers = getAvailableNumbers();
 
   for (let r = 0; r < rows; r++) {
     cells[r] = [];
@@ -470,7 +503,7 @@ function generateGrid() {
         cell.classList.add('gray');
       }
 
-      const val = Math.floor(Math.random() * 9) + 1;
+      const val = availableNumbers[Math.floor(Math.random() * availableNumbers.length)];
 
       cell.textContent = val;
       cell.dataset.row = r;
@@ -484,14 +517,8 @@ function generateGrid() {
     }
   }
 
-  const a = Math.floor(Math.random() * rows);
-  const b = Math.floor(Math.random() * cols);
-
-  const c1 = Math.floor(Math.random() * rows);
-  const d1 = Math.floor(Math.random() * cols);
-
-  targetNumber =
-    parseInt(cells[a][b].dataset.value) + parseInt(cells[c1][d1].dataset.value);
+  const range = getTargetNumberRange();
+  targetNumber = Math.floor(Math.random() * (range[1] - range[0] + 1)) + range[0];
 
   targetBox.textContent = targetNumber;
 }
@@ -501,7 +528,7 @@ function generateGrid() {
 // =====================
 function resetGame() {
   score = 0;
-  level = 0;
+  level = 1;
   progress = 0;
 
   updateScoreDisplay();
