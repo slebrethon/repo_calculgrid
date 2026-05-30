@@ -92,6 +92,35 @@ Ce projet est un jeu de calcul mental appelé "calculGRID". Le joueur dispose de
 - 5 langues supportées
 - Traductions complètes de l'interface
 
+## Système de Progression et Difficultés
+
+### Chiffres Disponibles par Niveau
+Le système de difficulté s'ajuste par l'ajout progressif de chiffres à la grille selon le niveau du joueur :
+
+| Niveau | Chiffres Disponibles |
+|--------|----------------------|
+| 1      | 0, 1, 2 |
+| 2      | 0, 1, 2, 3 |
+| 3      | 0, 1, 2, 3, 4 |
+| 4      | 0, 1, 2, 3, 4, 5 |
+| 5      | 0, 1, 2, 3, 4, 5, 6 |
+| 6      | 0, 1, 2, 3, 4, 5, 6, 7 |
+| 7      | 0, 1, 2, 3, 4, 5, 6, 7, 8 |
+| 8      | 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 |
+| 9+     | 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 |
+
+### Plages de Sommes Cibles par Niveau
+La somme à atteindre s'adapte aussi selon le niveau pour maintenir une difficulté cohérente :
+
+| Niveau | Plage de Sommes |
+|--------|-----------------|
+| 1 à 2  | 1 à 10 |
+| 3 à 5  | 1 à 40 |
+| 6 à 8  | 1 à 60 |
+| 9+     | 1 à 99 |
+
+Cette progression permet aux joueurs de débuter avec un défi maîtrisable (peu de chiffres disponibles et sommes basses) et d'augmenter graduellement la complexité en gagnant des niveaux.
+
 ## Installation et Lancement
 
 1. **Prérequis** :
