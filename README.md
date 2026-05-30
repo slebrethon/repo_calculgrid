@@ -4,7 +4,7 @@
 
 Ce projet est un jeu de calcul mental appelé "calculGRID". Le joueur dispose de 2 minutes pour atteindre une somme demandée en utilisant une grille de chiffres. Le jeu est développé en HTML, CSS et JavaScript, avec une interface responsive utilisant Bootstrap.
 
-**url CACULGRID** - https://slebrethon.github.io/repo_calculgrid/
+**url CALCULGRID** - https://slebrethon.github.io/repo_calculgrid/
 
 ## Technologies Utilisées
 
